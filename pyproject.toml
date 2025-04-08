@@ -1,7 +1,7 @@
 [project]
 name = "aws-cognito-circleci"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Python-based tool for automating AWS Cognito User Pool setup and management through CircleCI pipelines."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

@@ -21,7 +21,6 @@ clean: ## Clean up cached generated files
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +
 	find . -type d -name ".ruff_cache" -exec rm -rf {} +
 	find . -type d -name ".mypy_cache" -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
 	@echo "Cleanup complete."
 
 
