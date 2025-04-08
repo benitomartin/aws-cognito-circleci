@@ -7,12 +7,10 @@ from loguru import logger
 
 dotenv.load_dotenv()
 
-domain_name = "hellokitty"
-
 AWS_REGION = os.getenv('AWS_REGION')
 BOTO_SERVICE_NAME = os.getenv('BOTO_SERVICE_NAME', 'cognito-idp')
 POOL_NAME = os.getenv('POOL_NAME')
-DOMAIN_PREFIX = domain_name
+DOMAIN_PREFIX = os.getenv('DOMAIN_PREFIX')
 
 if not AWS_REGION:
     raise ValueError("Missing AWS_REGION in .env file")
