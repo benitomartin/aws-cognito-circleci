@@ -30,7 +30,7 @@ cd aws-cognito-circleci
 
 ```bash
 uv sync --all-groups
-source .venv/bin/activate  
+source .venv/bin/activate
 ```
 
 ## Configuration
@@ -56,8 +56,8 @@ uv run src/cognito.py
 The script will:
 
 1. Create or use existing Cognito User Pool
-2. Set up App Client with OAuth configuration
-3. Output the configuration details
+1. Set up App Client with OAuth configuration
+1. Output the configuration details
 
 ## Development
 

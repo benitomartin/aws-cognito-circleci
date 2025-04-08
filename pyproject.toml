@@ -14,9 +14,14 @@ dependencies = [
 
 
 [dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+]
 lint = [
     "mypy>=1.15.0",
     "ruff>=0.11.4",
+    "types-boto3>=1.37.29",
+    "types-requests>=2.32.0.20250328",
 ]
 tests = [
     "pytest>=8.3.5",
@@ -31,7 +36,7 @@ tests = [
 target-version = "py312"
 
 # Same as Black.
-line-length = 160
+line-length = 120
 indent-width = 4
 
 # Exclude a variety of commonly ignored directories.
@@ -88,8 +93,8 @@ max-complexity = 10
 
 [tool.mypy]
 # Mypy configuration.
-files = "src"
-ignore_missing_imports = true
+files = ["app.py","src"]
+ignore_missing_imports = false
 disallow_untyped_defs = true
 check_untyped_defs = true
 warn_redundant_casts = true
@@ -106,6 +111,6 @@ testpaths = [ "tests" ]
 python_files = [ "test_*.py" ]
 addopts = "-ra -v -s"
 filterwarnings = [
-    "ignore::DeprecationWarning",
+    # "ignore::DeprecationWarning",
     "ignore::UserWarning"
 ]
