@@ -55,13 +55,13 @@ repos:
       - id: detect-secrets
 
 
-  -   repo: local
-      hooks:
-      -   id: clean-generated-files
-          name: Clean Generated Files
-          entry: ./clean_generated.sh
-          language: system
-          stages: [commit] # Or other stages like manual
+  # -   repo: local
+  #     hooks:
+  #     -   id: clean-generated-files
+  #         name: Clean Generated Files
+  #         entry: ./clean_generated.sh
+  #         language: system
+  #         stages: [commit] # Or other stages like manual
 
   # - repo: local
   #   hooks:

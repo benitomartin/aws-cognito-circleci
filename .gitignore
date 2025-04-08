@@ -175,3 +175,4 @@ cython_debug/
 
 
 GOOGLE_DEV_CONSOLE.md
+clean_generated.sh
