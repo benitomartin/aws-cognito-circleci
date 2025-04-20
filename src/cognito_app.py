@@ -23,7 +23,7 @@ logger.info(f"Checking if user pool '{POOL_NAME}' already exists...")
 existing_pool_id = None
 
 paginator = client.get_paginator("list_user_pools")
-for page in paginator.paginate(MaxResults=60):
+for page in paginator.paginate(MaxResults=60, PaginationConfig={"MaxItems": 10}):  # type: ignore
     for pool in page["UserPools"]:
         if pool["Name"] == POOL_NAME:
             existing_pool_id = pool["Id"]
@@ -60,9 +60,9 @@ existing_client_id = None
 
 response_clients = client.list_user_pool_clients(UserPoolId=user_pool_id, MaxResults=60)
 
-for client in response_clients["UserPoolClients"]:
-    if client["ClientName"] == CLIENT_NAME:
-        existing_client_id = client["ClientId"]
+for client_info in response_clients["UserPoolClients"]:
+    if client_info["ClientName"] == CLIENT_NAME:
+        existing_client_id = client_info["ClientId"]
         logger.info(f"App Client '{CLIENT_NAME}' already exists with ID: {existing_client_id}")
         break
 

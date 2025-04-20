@@ -35,11 +35,19 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies:
-          - types-requests>=2.32.0.20250328
+          - boto3==1.37.29
+          - botocore==1.37.29
+          - python-dotenv==1.1.0
+          - loguru==0.7.3
+          - streamlit==1.44.1
+          - requests==2.32.3
+          - pytest==8.3.5
+          - types-requests==2.32.0.20250328
+          - mypy-boto3-cognito-idp==1.37.13.post1
+          - boto3-stubs>=1.37.37
         args:
           [
             --config-file=pyproject.toml,
-            --ignore-missing-imports
             ]
 
   - repo: https://github.com/hukkin/mdformat

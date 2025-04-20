@@ -3,6 +3,10 @@ name = "aws-cognito-circleci"
 version = "0.1.0"
 description = "A Python-based tool for automating AWS Cognito User Pool setup and management through CircleCI pipelines."
 readme = "README.md"
+authors = [
+    { name = "Benito Martin"},
+]
+license = { file = "LICENSE" }
 requires-python = ">=3.12"
 dependencies = [
     "boto3>=1.37.29",
@@ -12,17 +16,19 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-    "types-boto3>=1.37.29",
-    "types-requests>=2.32.0.20250328",
-    "pre-commit>=4.2.0",
-]
-lint = [
+ci = [
+    "pytest>=8.3.5",
+    "pytest-mock>=3.14.0",
     "mypy>=1.15.0",
     "ruff>=0.11.4",
 ]
-tests = [
-    "pytest>=8.3.5",
+
+dev = [
+    "pre-commit>=4.2.0",
+    "types-boto3>=1.37.29",
+    "types-requests>=2.32.0.20250328",
+    "boto3-stubs>=1.37.37",
+    "mypy-boto3-cognito-idp>=1.37.13.post1",
 ]
 
 ######################################
@@ -91,7 +97,7 @@ max-complexity = 10
 
 [tool.mypy]
 # Mypy configuration.
-files = ["app.py","src"]
+files = ["app","src"]
 ignore_missing_imports = false
 disallow_untyped_defs = true
 check_untyped_defs = true

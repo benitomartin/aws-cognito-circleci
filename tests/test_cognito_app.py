@@ -1,10 +1,11 @@
 import os
+from typing import Any
 
 import boto3
 import dotenv
 import pytest
-from botocore.client import BaseClient
 from botocore.exceptions import ClientError
+from mypy_boto3_cognito_idp import CognitoIdentityProviderClient
 
 dotenv.load_dotenv()
 
@@ -14,11 +15,12 @@ GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 
 
 @pytest.fixture
-def cognito_idp_client() -> BaseClient:
-    return boto3.client("cognito-idp", region_name="eu-central-1")
+def cognito_idp_client() -> Any:
+    client = boto3.client("cognito-idp", region_name="eu-central-1")
+    return client
 
 
-def test_user_pool_and_app_client_exist(cognito_idp_client: BaseClient) -> None:
+def test_user_pool_and_app_client_exist(cognito_idp_client: CognitoIdentityProviderClient) -> None:
     assert USER_POOL_ID is not None, "USER_POOL_ID is not set in .env"
     assert CLIENT_ID is not None, "CLIENT_ID is not set in .env"
     assert GOOGLE_CLIENT_ID is not None, "GOOGLE_CLIENT_ID is not set in .env"

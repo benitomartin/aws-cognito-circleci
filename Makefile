@@ -4,6 +4,11 @@
 
 all: ruff mypy clean
 
+streamlit: ## Run Streamlit app
+	@echo "Running Streamlit app..."
+	uv run streamlit run app/main.py
+	@echo "Streamlit app complete."
+
 test: ## Run pytest tests
 	@echo "Running pytest tests..."
 	uv run pytest

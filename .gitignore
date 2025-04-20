@@ -174,5 +174,4 @@ cython_debug/
 .pypirc
 
 
-GOOGLE_DEV_CONSOLE.md
 clean_generated.sh

@@ -35,20 +35,20 @@ jobs:
           command: |
             uv run pytest
 
-      - run:
-          name: Create .env file
-          command: |
-            echo "AWS_REGION=${AWS_REGION}" >> .env
-            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> .env
-            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> .env
-            echo "POOL_NAME=${POOL_NAME}" >> .env
-            echo "CLIENT_NAME=${CLIENT_NAME}" >> .env
-            echo "CLIENT_ID=${CLIENT_ID}" >> .env
-            echo "USER_POOL_ID=${USER_POOL_ID}" >> .env
-            echo "DOMAIN_PREFIX=${DOMAIN_PREFIX}" >> .env
-            echo "REDIRECT_URI=${REDIRECT_URI}" >> .env
-            echo "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> .env
-            echo "GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}" >> .env
+      # - run:
+      #     name: Create .env file
+      #     command: |
+      #       echo "AWS_REGION=${AWS_REGION}" >> .env
+      #       echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> .env
+      #       echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> .env
+      #       echo "POOL_NAME=${POOL_NAME}" >> .env
+      #       echo "CLIENT_NAME=${CLIENT_NAME}" >> .env
+      #       echo "CLIENT_ID=${CLIENT_ID}" >> .env
+      #       echo "USER_POOL_ID=${USER_POOL_ID}" >> .env
+      #       echo "DOMAIN_PREFIX=${DOMAIN_PREFIX}" >> .env
+      #       echo "REDIRECT_URI=${REDIRECT_URI}" >> .env
+      #       echo "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> .env
+      #       echo "GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}" >> .env
 
       - aws-cli/setup:
           profile_name: default

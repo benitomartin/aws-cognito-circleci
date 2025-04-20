@@ -29,7 +29,7 @@ logger.info(f"Checking if user pool '{POOL_NAME}' exists...")
 
 existing_pool_id = None
 paginator = client.get_paginator("list_user_pools")
-for page in paginator.paginate(MaxResults=60):
+for page in paginator.paginate(MaxResults=60, PaginationConfig={"MaxItems": 10}):  # type: ignore
     for pool in page["UserPools"]:
         if pool["Name"] == POOL_NAME:
             existing_pool_id = pool["Id"]

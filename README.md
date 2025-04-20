@@ -108,7 +108,7 @@ The script will:
 Run the Streamlit app:
 
 ```bash
-uv run streamlit run app.py
+uv run streamlit run app/main.py
 ```
 
 The app will:
