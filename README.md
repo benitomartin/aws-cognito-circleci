@@ -152,7 +152,7 @@ make test
 
 The project includes CircleCI configuration for automated deployment. Configure the following environment variables in CircleCI:
 
-- XXX
+- XXXX
 
 ## License
 
