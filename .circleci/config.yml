@@ -54,11 +54,23 @@ jobs:
           profile_name: default
 
       - run:
-          name: Deploy to AWS
+          name: Configure Cognito App
           command: |
             uv run src/cognito_app.py
+
+      - run:
+          name: Configure Cognito App
+          command: |
             uv run src/hosted_domain.py
+
+      - run:
+          name: Configure Google IDP and Client Login Pages
+          command: |
             uv run src/google_idp.py
+
+      - run:
+          name: Configure Google IDP and Client Login Pages
+          command: |
             uv run src/client_login_pages.py
 
 workflows:
