@@ -59,17 +59,17 @@ jobs:
             uv run src/cognito_app.py
 
       - run:
-          name: Configure Cognito App
+          name: Configure Hosted Domain
           command: |
             uv run src/hosted_domain.py
 
       - run:
-          name: Configure Google IDP and Client Login Pages
+          name: Configure Google IDP
           command: |
             uv run src/google_idp.py
 
       - run:
-          name: Configure Google IDP and Client Login Pages
+          name: Configure Client Login Pages
           command: |
             uv run src/client_login_pages.py
 

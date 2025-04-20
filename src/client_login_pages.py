@@ -11,13 +11,15 @@ dotenv.load_dotenv()
 # Get environment variables
 USER_POOL_ID = os.getenv("USER_POOL_ID")
 CLIENT_ID = os.getenv("CLIENT_ID")
+AWS_REGION = os.getenv("AWS_REGION", "eu-central-1")
 
 # Ensure required parameters are provided
 if not USER_POOL_ID or not CLIENT_ID:
     raise ValueError("Missing required environment variables: USER_POOL_ID, CLIENT_ID")
 
 # Create Cognito client
-client = boto3.client("cognito-idp")
+client = boto3.client(service_name="cognito-idp", region_name=AWS_REGION)
+
 
 try:
     logger.info("Updating User Pool Client configuration...")
