@@ -1,0 +1,68 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@5.3.1
+
+jobs:
+  build-deploy:
+    docker:
+      - image: cimg/python:3.12
+    steps:
+      - checkout
+
+      - run:
+          name: Install UV
+          command: |
+            curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - run:
+          name: Create venv and install dependencies
+          command: |
+            uv sync --all-extras
+
+      - run:
+          name: Run ruff
+          command: |
+            uv run ruff check . --fix --exit-non-zero-on-fix
+
+      - run:
+          name: Run MyPy
+          command: |
+            uv run mypy
+
+      - run:
+          name: Run tests
+          command: |
+            uv run pytest
+
+      - run:
+          name: Create .env file
+          command: |
+            echo "AWS_REGION=${AWS_REGION}" >> .env
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> .env
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> .env
+            echo "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" >> .env
+            echo "POOL_NAME=${POOL_NAME}" >> .env
+            echo "CLIENT_NAME=${CLIENT_NAME}" >> .env
+            echo "CLIENT_ID=${CLIENT_ID}" >> .env
+            echo "USER_POOL_ID=${USER_POOL_ID}" >> .env
+            echo "DOMAIN_PREFIX=${DOMAIN_PREFIX}" >> .env
+            echo "REDIRECT_URI=${REDIRECT_URI}" >> .env
+            echo "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> .env
+            echo "GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}" >> .env
+
+      - aws-cli/setup:
+          profile_name: default
+
+      - run:
+          name: Deploy to AWS
+          command: |
+            uv run src/cognito_app.py
+            uv run src/hosted_domain.py
+            uv run src/google_idp.py
+            uv run src/client_login_pages.py
+
+workflows:
+  deploy:
+    jobs:
+      - build-deploy

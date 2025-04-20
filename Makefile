@@ -4,6 +4,10 @@
 
 all: ruff mypy clean
 
+test: ## Run pytest tests
+	@echo "Running pytest tests..."
+	uv run pytest
+	@echo "pytest tests complete."
 
 ruff: ## Run Ruff linter
 	@echo "Running Ruff linter..."

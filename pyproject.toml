@@ -11,17 +11,15 @@ dependencies = [
     "streamlit>=1.44.1",
 ]
 
-
-
 [dependency-groups]
 dev = [
+    "types-boto3>=1.37.29",
+    "types-requests>=2.32.0.20250328",
     "pre-commit>=4.2.0",
 ]
 lint = [
     "mypy>=1.15.0",
     "ruff>=0.11.4",
-    "types-boto3>=1.37.29",
-    "types-requests>=2.32.0.20250328",
 ]
 tests = [
     "pytest>=8.3.5",
@@ -111,6 +109,6 @@ testpaths = [ "tests" ]
 python_files = [ "test_*.py" ]
 addopts = "-ra -v -s"
 filterwarnings = [
-    # "ignore::DeprecationWarning",
+    "ignore::DeprecationWarning",
     "ignore::UserWarning"
 ]

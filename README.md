@@ -39,10 +39,14 @@ source .venv/bin/activate
 
 ```env
 AWS_REGION=your-aws-region
-BOTO_SERVICE_NAME=cognito-idp
 POOL_NAME=StreamlitAppUserPool
 CLIENT_NAME=StreamlitAppClient
-DOMAIN_PREFIX=streamlit-app
+CLIENT_ID=your-client-id
+USER_POOL_ID=your-user-pool-id
+DOMAIN_PREFIX=cog-app
+REDIRECT_URI=http://localhost:8501
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
 ```
 
 ## Usage
@@ -50,14 +54,67 @@ DOMAIN_PREFIX=streamlit-app
 Run the Cognito setup script:
 
 ```bash
-uv run src/cognito.py
+uv run src/cognito_app.py
 ```
 
 The script will:
 
 1. Create or use existing Cognito User Pool
 1. Set up App Client with OAuth configuration
-1. Output the configuration details
+1. Output the configuration details, that shall be added to the `.env` file under `USER_POOL_ID` and `CLIENT_ID`
+
+Run the Hosted UI domain setup script:
+
+```bash
+uv run src/hosted_domain.py
+```
+
+The script will:
+
+1. Create or use existing Hosted UI domain
+1. Output the domain URL
+
+## Create a Google IDP
+
+First you need to cresate a Google Client in the Google Cloud Console. First you need to create a project. The, under `APIs & Services` -> `Credentials` create a new OAuth client ID. You need to select Web Application as the application type and add the following redirect URI, which is the domain of your Cognito Hosted UI + `/oauth2/idpresponse`: `https://cog-app.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse`.
+
+Once you click on `Create`, you will get the client ID and client secret. Add them to the `.env` file under `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+
+Then run the following command:
+
+```bash
+uv run src/google_idp.py
+```
+
+The script will:
+
+1. Create a Google Identity Provider in your Cognito User Pool
+
+## Activate Login with Google and Cognito User Pool
+
+Once the Google Identity Provider is created, you need to update the User Pool Client to support Google as an identity provider. Run the following command:
+
+```bash
+uv run src/client_login_pages.py
+```
+
+The script will:
+
+1. Update the User Pool Client to support Google as an identity provider
+1. Update the User Pool Client to support Cognito User Pool as an identity provider
+
+## Run the Streamlit App
+
+Run the Streamlit app:
+
+```bash
+uv run streamlit run app.py
+```
+
+The app will:
+
+1. Display a login button that redirects to the Cognito Hosted UI
+1. After successful authentication, display the access and ID tokens
 
 ## Development
 
@@ -87,7 +144,9 @@ make all
 
 Run tests using pytest:
 
-XXX
+```bash
+make test
+```
 
 ## CircleCI Integration
 
