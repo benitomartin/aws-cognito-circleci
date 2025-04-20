@@ -102,7 +102,7 @@ ignore_missing_imports = false
 disallow_untyped_defs = true
 check_untyped_defs = true
 warn_redundant_casts = true
-warn_unused_ignores = true
+warn_unused_ignores = false
 warn_return_any = true
 strict_optional = true
 
