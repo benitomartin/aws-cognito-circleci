@@ -41,7 +41,6 @@ jobs:
             echo "AWS_REGION=${AWS_REGION}" >> .env
             echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> .env
             echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> .env
-            echo "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" >> .env
             echo "POOL_NAME=${POOL_NAME}" >> .env
             echo "CLIENT_NAME=${CLIENT_NAME}" >> .env
             echo "CLIENT_ID=${CLIENT_ID}" >> .env
