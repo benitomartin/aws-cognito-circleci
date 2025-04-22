@@ -20,7 +20,7 @@ TOKEN_URL = f"{COGNITO_DOMAIN}/oauth2/token"
 
 # Handle redirect URI (authorization code flow)
 def get_auth_code() -> str | None:
-    # Use st.query_params instead of the deprecated experimental function
+    # Use Streamlit's query_params to get the URL parameters
     query_params = st.query_params
     # Get the code parameter, explicitly cast to str or None
     code: str | None = query_params.get("code", None)

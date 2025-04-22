@@ -10,6 +10,35 @@ A Python-based tool for automating AWS Cognito User Pool setup and management th
 - Comprehensive logging with Loguru
 - CircleCI integration ready
 
+## Project Structure
+
+```text
+aws-cognito-circleci/
+├── .circleci/
+│   └── config.yml
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+├── src/
+│   ├── __init__.py
+│   ├── cognito_app.py
+│   ├── hosted_domain.py
+│   ├── google_idp.py
+│   └── client_login_pages.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_cognito_app.py
+│   └── test_streamlit_app.py
+├── .env.example
+├── .gitignore
+├── .pre-commit-config.yaml
+├── LICENSE
+├── Makefile
+├── README.md
+├── pyproject.toml
+└── uv.lock
+```
+
 ## Prerequisites
 
 - Python 3.12 or higher
@@ -76,7 +105,7 @@ The script will:
 
 ## Create a Google IDP
 
-First you need to cresate a Google Client in the Google Cloud Console. First you need to create a project. The, under `APIs & Services` -> `Credentials` create a new OAuth client ID. You need to select Web Application as the application type and add the following redirect URI, which is the domain of your Cognito Hosted UI + `/oauth2/idpresponse`: `https://cog-app.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse`.
+First you need to create a Google Client in the Google Cloud Console. First you need to create a project. The, under `APIs & Services` -> `Credentials` create a new OAuth client ID. You need to select Web Application as the application type and add the following redirect URI, which is the domain of your Cognito Hosted UI + `/oauth2/idpresponse`: `https://cog-app.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse`.
 
 Once you click on `Create`, you will get the client ID and client secret. Add them to the `.env` file under `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
 
