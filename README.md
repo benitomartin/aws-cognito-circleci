@@ -2,6 +2,8 @@
 
 A Python-based tool for automating AWS Cognito User Pool setup and management through CircleCI pipelines.
 
+The project has been developed as part of the following [blog](XXXX)
+
 ## Features
 
 - Automated creation and management of AWS Cognito User Pools
@@ -105,9 +107,14 @@ The script will:
 
 ## Create a Google IDP
 
-First you need to create a Google Client in the Google Cloud Console. First you need to create a project. The, under `APIs & Services` -> `Credentials` create a new OAuth client ID. You need to select Web Application as the application type and add the following redirect URI, which is the domain of your Cognito Hosted UI + `/oauth2/idpresponse`: `https://cog-app.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse`.
+In the Google Cloud Console, create a new project and then navigate to `APIs & Services` -> `Credentials` -> `Create Credentials` -> `OAuth client ID`. Choose Web Application as the application type. Under Authorized redirect URIs, add the redirect URI for your Cognito Hosted UI, which is the domain of your Cognito Hosted UI + `/oauth2/idpresponse`: `https://<DOMAIN_PREFIX>.auth.<AWS_REGION>.amazoncognito.com/oauth2/idpresponse`.
 
-Once you click on `Create`, you will get the client ID and client secret. Add them to the `.env` file under `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+Once created, copy the Client ID and Client Secret into your `.env` file as:
+
+```.env
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
 
 Then run the following command:
 
@@ -181,7 +188,19 @@ make test
 
 The project includes CircleCI configuration for automated deployment. Configure the following environment variables in CircleCI:
 
-- XXXX
+```.env
+AWS_REGION=your-aws-region
+AWS_ACCESS_KEY_ID=your-aws-access-key-id
+AWS_SECRET_ACCESS_KEY=your-aws-secret-access-key
+POOL_NAME=StreamlitAppUserPool
+CLIENT_NAME=StreamlitAppClient
+CLIENT_ID=your-client-id
+USER_POOL_ID=your-user-pool-id
+DOMAIN_PREFIX=cog-app
+REDIRECT_URI=http://localhost:8501
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
 
 ## License
 
