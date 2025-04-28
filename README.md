@@ -28,7 +28,6 @@ aws-cognito-circleci/
 │   ├── google_idp.py
 │   └── client_login_pages.py
 ├── tests/
-│   ├── __init__.py
 │   ├── test_cognito_app.py
 │   └── test_streamlit_app.py
 ├── .env.example
