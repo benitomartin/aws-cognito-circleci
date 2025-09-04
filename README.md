@@ -2,7 +2,7 @@
 
 A Python-based tool for automating AWS Cognito User Pool setup and management through CircleCI pipelines.
 
-The project has been developed as part of the following [blog](XXXX)
+The project has been developed as part of the following [blog](https://circleci.com/blog/secure-streamlit-app-deployment-with-aws-cognito-streamlit-and-circleci/)
 
 ## Features
 
